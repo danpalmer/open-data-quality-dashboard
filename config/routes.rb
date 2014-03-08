@@ -1,4 +1,6 @@
 DataForce::Application.routes.draw do
+  resources :resources
+
   resources :score_criteria
 
   resources :scores
