@@ -1,0 +1,29 @@
+<h1>Listing score_criteria</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amount</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @score_criteria.each do |score_criterium| %>
+      <tr>
+        <td><%= score_criterium.name %></td>
+        <td><%= score_criterium.amount %></td>
+        <td><%= link_to 'Show', score_criterium %></td>
+        <td><%= link_to 'Edit', edit_score_criterium_path(score_criterium) %></td>
+        <td><%= link_to 'Destroy', score_criterium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Score criterium', new_score_criterium_path %>

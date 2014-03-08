@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @score_criterium.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @score_criterium.amount %>
+</p>
+
+<%= link_to 'Edit', edit_score_criterium_path(@score_criterium) %> |
+<%= link_to 'Back', score_criteria_path %>

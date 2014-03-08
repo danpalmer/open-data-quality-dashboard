@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308145903) do
+ActiveRecord::Schema.define(version: 20140308152203) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -19,5 +19,28 @@ ActiveRecord::Schema.define(version: 20140308145903) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "score_criteria", force: true do |t|
+    t.string   "name"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "scores", force: true do |t|
+    t.integer  "department_id"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scores", ["department_id"], name: "index_scores_on_department_id"
+
+  create_table "scores_score_criteria", force: true do |t|
+    t.integer "score_id"
+    t.integer "score_criteria_id"
+  end
+
+  add_index "scores_score_criteria", ["score_id", "score_criteria_id"], name: "index_scores_score_criteria_on_score_id_and_score_criteria_id"
 
 end
