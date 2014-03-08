@@ -198,3 +198,73 @@ blockquote:before {
 blockquote:after {
   position: absolute;
 }
+
+#chart1 {
+  width: 960px;
+  height: 500px;
+  border: solid 1px #ccc;
+}
+
+text {
+  font: 10px sans-serif;
+}
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+#chart1 .node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+#chart1 .link {
+  stroke: #999;
+  stroke-opacity: .6;
+  stroke-width: 1.5px;
+}
+
+#chart2, #chart3 {
+  width: 960px;
+  height: 180px;
+  border: solid 1px #ccc;
+}
+
+#chart2 path, #chart3 line {
+  fill: none;
+  stroke: #333;
+}
+
+#chart3 line {
+  shape-rendering: crispEdges;
+}
+
+#chart4 {
+  margin-left: -40px;
+  height: 506px;
+}
+
+#chart4 .background {
+  fill: #ddd;
+}
+
+#chart4 .dot {
+  stroke: #000;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
