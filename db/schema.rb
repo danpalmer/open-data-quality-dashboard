@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308215513) do
+ActiveRecord::Schema.define(version: 20140308222753) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20140308215513) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.integer  "department_id"
+    t.boolean  "exists"
+    t.boolean  "has_sane_filename"
+    t.boolean  "has_extension"
   end
 
   add_index "resources", ["department_id"], name: "index_resources_on_department_id"
