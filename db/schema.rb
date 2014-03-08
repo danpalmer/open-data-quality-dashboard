@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308182702) do
+ActiveRecord::Schema.define(version: 20140308215513) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -25,7 +25,14 @@ ActiveRecord::Schema.define(version: 20140308182702) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "department_id"
   end
+
+  add_index "resources", ["department_id"], name: "index_resources_on_department_id"
 
   create_table "score_criteria", force: true do |t|
     t.string   "name"
