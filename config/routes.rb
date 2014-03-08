@@ -1,4 +1,8 @@
 DataForce::Application.routes.draw do
+  resources :score_criteria
+
+  resources :scores
+
   resources :departments
 
   # The priority is based upon order of creation: first created -> highest priority.
