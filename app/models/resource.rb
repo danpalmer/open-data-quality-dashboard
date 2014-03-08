@@ -1,5 +1,6 @@
 class Resource < ActiveRecord::Base
     has_attached_file :file
-    validates_attachment_content_type :file, :content_type => /.*/
+    do_not_validate_attachment_file_type :file
+    validates_attachment_file_name :file, :matches => /.*/
     belongs_to :department
 end

@@ -20,7 +20,7 @@ namespace "import" do
                         packages_json = open("http://data.gov.uk/api/3/action/package_show?id=#{package['id']}")
                         packages = JSON.load(packages_json)
                         packages['result']['resources'].each do |resource|
-                            Resource.create(url: resource['url'])
+                            Resource.create(url: resource['url'], department: department)
                         end
                     rescue
                         puts "! Failed to import #{package['name']}"
