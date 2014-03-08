@@ -1,38 +1,80 @@
-<html>
-<head>
-<title>DataForce!</title>
 
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type=“text/css” href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-
-<script src="http://d3js.org/d3.v3.min.js"></script>
-
+<!DOCTYPE html>
+<html class="ocks-org do-not-copy">
+<meta charset="utf-8">
+<title>Fisheye Distortion</title>
 <style>
 
-.node {
+@import url(fish_style.css);
+
+#chart1 {
+  width: 960px;
+  height: 500px;
+  border: solid 1px #ccc;
+}
+
+text {
+  font: 10px sans-serif;
+}
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+#chart1 .node {
   stroke: #fff;
   stroke-width: 1.5px;
 }
 
-.link {
+#chart1 .link {
   stroke: #999;
   stroke-opacity: .6;
+  stroke-width: 1.5px;
+}
+
+#chart2, #chart3 {
+  width: 960px;
+  height: 180px;
+  border: solid 1px #ccc;
+}
+
+#chart2 path, #chart3 line {
+  fill: none;
+  stroke: #333;
+}
+
+#chart3 line {
+  shape-rendering: crispEdges;
+}
+
+#chart4 {
+  margin-left: -40px;
+  height: 506px;
+}
+
+#chart4 .background {
+  fill: #ddd;
+}
+
+#chart4 .dot {
+  stroke: #000;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
 }
 
 </style>
 
-</head>
+<h1>Fisheye Distortion</h1>
 
-<body>
+<p id="chart1">
 
-<div class="page-header">
-  <h1>DataForce<br>
-    <small>A machine learning system for government data</small>
-  </h1>
-</div>
-
-<hr/>
-
+<script src="http://d3js.org/d3.v2.min.js?2.9.4"></script>
+<script src="fisheye.js"></script>
 <script>
 
 (function chart1() {
@@ -115,13 +157,16 @@
   });
 })();
 
+
+  function fishline(d) {
+    return line(d.map(function(d) {
+      d = fisheye({x: d[0], y: d[1]});
+      return [d.x, d.y];
+    }));
+  }
+})();
+
+
+
+
 </script>
-
-<footer>
-  <hr/>
-  <aside>March 9, 2014</aside>
-  <a href="../" rel="author">Elliot Hughes, Mark Chapman, Dan Palmer & David Durant</a>
-</footer>
-
-</body>
-</html>
