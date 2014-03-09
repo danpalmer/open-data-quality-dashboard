@@ -25,6 +25,11 @@
             });
         </script>
     </div>
+    <div class="large-12 medium-12 small-12 columns left" id="statuses-highlights">
+        <h1><%= @statuses[404] %> <small>File Not Found</small></h1>
+        <h1><%= @statuses[403] %> <small>Forbidden</small></h1>
+        <h1><%= @statuses[500] %> <small>Internal Server Error</small></h1>
+    </div>
     <div class="large-12 medium-12 small-12 columns left" id="encodings">
         <h3>File Encodings</h3>
         <svg></svg>
@@ -36,6 +41,24 @@
                 pie(data, "#encodings");
             });
         </script>
+    </div>
+    <div class="large-12 medium-12 small-12 columns left" id="csv-valid">
+        <h3>CSV Validation</h3>
+        <svg></svg>
+        <script>
+            $(function() {
+                pie([{
+                    label: "Valid",
+                    value: <%= @csvs[:valid] %>
+                },{
+                    label: "Invalid",
+                    value: <%= @csvs[:invalid] %>
+                }], "#csv-valid");
+            });
+        </script>
+    </div>
+    <div class="large-12 medium-12 small-12 columns left" id="csv-valid">
+        <h1><%= @csvs[:average_rows] %> <small>Average Rows</small></h1>
     </div>
 </div>
 

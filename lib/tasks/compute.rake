@@ -1,10 +1,18 @@
+require 'timeout'
+
 namespace "compute" do
 
     desc "Check CSV files for errors"
     task :checkcsv => :environment do
-        Resource.where(extension: 'csv').each do |resource|
-            puts resource.file.path
-            output = `csvclean -nvl #{resource.file.path}`.strip
+        Resource.where("csv_is_valid is NULL and extension is 'csv'").each do |resource|
+            puts "id: #{resource.id} #{resource.file.path}"
+            output = "No errors."
+            begin
+                status = Timeout::timeout(5) {
+                    output = `csvclean -nvl #{resource.file.path}`.strip
+                }
+            rescue
+            end
             if output == 'No errors.'
                 resource.csv_is_valid = true
                 puts "VALID"
@@ -76,6 +84,34 @@ namespace "compute" do
                 resource.encoding = nil
             end
             resource.save!
+        end
+    end
+
+    desc "Get MS Office info"
+    task :msoffice => :environment do
+        Resource.where(extension: "doc").each do |resource|
+            resource.document_pages = `wvsummary "#{resource.file.path}" | egrep -oe '(of (Pages|Slides) = )([0-9]+)' | egrep -o '[0-9]+'`
+            resource.save!
+        end
+        Resource.where(extension: "ppt").each do |resource|
+            resource.presentation_slides = `wvsummary "#{resource.file.path}" | egrep -oe '(of (Pages|Slides) = )([0-9]+)' | egrep -o '[0-9]+'`
+            resource.save!
+        end
+    end
+
+    desc "Get PDF Producers"
+    task :pdf_producers => :environment do
+        Resource.where(extension: "pdf").each do |resource|
+            begin
+                producer = /(?:Producer:      )(.+)$/.match(`pdfinfo "#{resource.file.path}" | grep 'Producer'`)[1]
+                # puts producer
+                # resource.pdf_is_valid = true
+                # resource.save!
+            rescue
+                puts "Invalid PDF: #{resource.file.path}"
+                # resource.pdf_is_valid = false
+                # resource.save!
+            end
         end
     end
 
