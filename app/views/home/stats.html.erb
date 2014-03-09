@@ -1,34 +1,46 @@
 <%= render 'navigation' %>
 
 <div class="row">
-    <div class="large-4 medium-6 small-12 columns left" id="statuses">
-        <h3>HTTP Status</h3>
+    <div class="large-12 medium-12 small-12 columns left" id="extensions">
+        <h3>File Types</h3>
         <svg></svg>
         <script>
             $(function() {
-                nv.addGraph(function() {
-                    var chart = nv.models.pieChart()
-                      .x(function(d) { return d.label })
-                      .y(function(d) { return d.value })
-                      .showLabels(true);
-
-                    d3.select("#statuses svg")
-                        .datum([
-                            {
-                                value: 10,
-                                label: "foobar"
-                            },
-                            {
-                                value: 90,
-                                label: "lots"
-                            }
-                            ])
-                        .transition().duration(350)
-                        .call(chart);
-
-                    return chart;
-                });
+                var data = <%=raw JSON.dump(@extensions.map {|e,c|
+                    {label: e, value: c}
+                }) %>;
+                pie(data, "#extensions");
+            });
+        </script>
+    </div>
+    <div class="large-12 medium-12 small-12 columns left" id="statuses">
+        <h3>HTTP Statuses</h3>
+        <svg></svg>
+        <script>
+            $(function() {
+                var data = <%=raw JSON.dump(@statuses.map {|e,c|
+                    {label: e, value: c}
+                }) %>;
+                pie(data, "#statuses");
             });
         </script>
     </div>
 </div>
+
+<script>
+    function pie(data, id) {
+        nv.addGraph(function() {
+            var chart = nv.models.pieChart()
+              .x(function(d) { return d.label })
+              .y(function(d) { return d.value })
+              .showLabels(true);
+
+            d3.select(id + " svg")
+                .datum(data)
+                .transition().duration(350)
+                .call(chart);
+
+            return chart;
+        });
+    }
+</script>
