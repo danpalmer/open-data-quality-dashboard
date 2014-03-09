@@ -72,6 +72,9 @@ namespace "compute" do
     task :encodings => :environment do
         Resource.where("file_file_name not NULL").each do |resource|
             resource.encoding = `file -b --mime-encoding "#{resource.file.path}"`.strip
+            if resource.encoding.include? "ERROR"
+                resource.encoding = nil
+            end
             resource.save!
         end
     end

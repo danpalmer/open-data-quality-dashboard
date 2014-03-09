@@ -25,6 +25,18 @@
             });
         </script>
     </div>
+    <div class="large-12 medium-12 small-12 columns left" id="encodings">
+        <h3>File Encodings</h3>
+        <svg></svg>
+        <script>
+            $(function() {
+                var data = <%=raw JSON.dump(@encodings.map {|e,c|
+                    {label: e, value: c}
+                }) %>;
+                pie(data, "#encodings");
+            });
+        </script>
+    </div>
 </div>
 
 <script>
