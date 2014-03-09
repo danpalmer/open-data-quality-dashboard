@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309021114) do
+ActiveRecord::Schema.define(version: 20140309090442) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140309021114) do
     t.string   "ms_office_version"
     t.string   "extension"
     t.integer  "http_status"
+    t.string   "encoding"
   end
 
   add_index "resources", ["department_id"], name: "index_resources_on_department_id"
