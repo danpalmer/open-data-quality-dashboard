@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308222753) do
+ActiveRecord::Schema.define(version: 20140308232354) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -33,6 +33,32 @@ ActiveRecord::Schema.define(version: 20140308222753) do
     t.boolean  "exists"
     t.boolean  "has_sane_filename"
     t.boolean  "has_extension"
+    t.string   "type"
+    t.boolean  "csv_is_valid"
+    t.boolean  "csv_has_valid_headings"
+    t.integer  "csv_rows"
+    t.string   "csv_encoding"
+    t.boolean  "spreadsheet_is_valid"
+    t.boolean  "spreadsheet_has_valid_sheet_names"
+    t.integer  "spreadsheet_sheets"
+    t.boolean  "spreadsheet_contains_graphs"
+    t.boolean  "spreadsheet_contains_images"
+    t.boolean  "html_is_index_html"
+    t.boolean  "html_contains_data_links"
+    t.boolean  "pdf_is_valid"
+    t.integer  "pdf_pages"
+    t.boolean  "pdf_contains_text"
+    t.boolean  "pdf_contains_drm"
+    t.boolean  "zip_is_valid"
+    t.integer  "zip_files"
+    t.boolean  "xml_is_valid"
+    t.boolean  "xml_contains_schema"
+    t.boolean  "presentation_is_valid"
+    t.integer  "presentation_slides"
+    t.boolean  "json_is_valid"
+    t.datetime "last_modified"
+    t.string   "ms_office_version"
+    t.string   "extension"
   end
 
   add_index "resources", ["department_id"], name: "index_resources_on_department_id"
