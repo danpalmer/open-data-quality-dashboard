@@ -13,6 +13,7 @@
             });
         </script>
     </div>
+    <hr/>
     <div class="large-12 medium-12 small-12 columns left" id="statuses">
         <h3>HTTP Statuses</h3>
         <svg></svg>
@@ -25,11 +26,13 @@
             });
         </script>
     </div>
+    <hr/>
     <div class="large-12 medium-12 small-12 columns left" id="statuses-highlights">
         <h1><%= @statuses[404] %> <small>File Not Found</small></h1>
         <h1><%= @statuses[403] %> <small>Forbidden</small></h1>
         <h1><%= @statuses[500] %> <small>Internal Server Error</small></h1>
     </div>
+    <hr/>
     <div class="large-12 medium-12 small-12 columns left" id="encodings">
         <h3>File Encodings</h3>
         <svg></svg>
@@ -42,6 +45,7 @@
             });
         </script>
     </div>
+    <hr/>
     <div class="large-12 medium-12 small-12 columns left" id="csv-valid">
         <h3>CSV Validation</h3>
         <svg></svg>
@@ -59,6 +63,31 @@
     </div>
     <div class="large-12 medium-12 small-12 columns left" id="csv-valid">
         <h1><%= @csvs[:average_rows] %> <small>Average Rows</small></h1>
+    </div>
+    <hr/>
+    <div class="large-12 medium-12 small-12 columns left" id="pdf-valid">
+        <h3>PDF Validation</h3>
+        <svg></svg>
+        <script>
+            $(function() {
+                pie([{
+                    label: "Valid",
+                    value: <%= @pdfs[:valid] %>
+                },{
+                    label: "Invalid",
+                    value: <%= @pdfs[:invalid] %>
+                }], "#pdf-valid");
+            });
+        </script>
+    </div>
+    <hr/>
+    <div class="large-12 medium-12 small-12 columns left" id="pdf-valid">
+        <h1><%= @pdfs[:average_pages] %> <small>Average Pages</small></h1>
+    </div>
+    <hr/>
+    <div class="large-12 medium-12 small-12 columns left" id="pdf-valid">
+        <h3>Files</h3>
+        <h1><%= @files[:pointless] %> <small>Pointless Files</small></h1>
     </div>
 </div>
 

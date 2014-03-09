@@ -99,18 +99,19 @@ namespace "compute" do
         end
     end
 
-    desc "Get PDF Producers"
-    task :pdf_producers => :environment do
+    desc "Check PDF Files"
+    task :checkpdfs => :environment do
         Resource.where(extension: "pdf").each do |resource|
             begin
                 producer = /(?:Producer:      )(.+)$/.match(`pdfinfo "#{resource.file.path}" | grep 'Producer'`)[1]
                 # puts producer
-                # resource.pdf_is_valid = true
-                # resource.save!
+                resource.pdf_is_valid = true
+                resource.pdf_pages = `pdfinfo "#{resource.file.path}" | grep 'Pages' | egrep -o '[0-9]+'`.strip.to_i
+                resource.save!
             rescue
                 puts "Invalid PDF: #{resource.file.path}"
-                # resource.pdf_is_valid = false
-                # resource.save!
+                resource.pdf_is_valid = false
+                resource.save!
             end
         end
     end
