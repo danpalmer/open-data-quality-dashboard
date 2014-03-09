@@ -23,10 +23,9 @@ class HomeController < ApplicationController
     end
 
     def leaderboard
-        @departments = Department.all
-        @extensions = Resource.select("extension").group("extension").count
-        @statuses = Resource.select("http_status").group("http_status").count
-        @encodings = Resource.select("encoding").group("encoding").count
+        @departments = Department.all.map { |d| {department: d, rating: d.rating} }
+        @departments.sort! {|a,b| a[:rating] <=> b[:rating] }
+        @departments = @departments.reverse
     end
 
 end

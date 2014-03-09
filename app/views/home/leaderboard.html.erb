@@ -2,6 +2,6 @@
 
 <div class="content">
     <% @departments.each do |d| %>
-        <%= d.name %><br/>
+        <%= d[:department].name %>: <%= d[:rating] %><br/>
     <% end %>
 </div>
