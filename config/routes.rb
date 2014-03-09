@@ -9,6 +9,7 @@ DataForce::Application.routes.draw do
 
   root 'home#stats'
   get '/leaderboard', to: 'home#leaderboard'
+  get '/quantity', to: 'home#quantity'
   get '/stats', to: 'home#stats'
 
   # The priority is based upon order of creation: first created -> highest priority.

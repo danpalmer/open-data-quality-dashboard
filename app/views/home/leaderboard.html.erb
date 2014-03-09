@@ -1,7 +1,30 @@
 <%= render 'navigation' %>
-
+<style>
+.department {
+    height: 200px;
+    padding: 20px;
+    border: 1px solid rgba(108, 214, 16, 1.0000);
+    background-color: #eee;
+    margin-bottom: 10px;
+}
+</style>
 <div class="content">
-    <% @departments.each do |d| %>
-        <%= d[:department].name %>: <%= d[:rating] %><br/>
-    <% end %>
+    <div class="row">
+        <div class="large-6 columns">
+            <h1>Quality</h1>
+            <% @departments_ratings.each_with_index do |d,i| %>
+                <div class="department" style="background-color: rgba(108, 214, 16, <%= d[:rating].to_f / 4.to_f%>)">
+                    <h2><%= i+1 %>. <%= d[:department].name %></h2>
+                </div>
+            <% end %>
+        </div>
+        <div class="large-6 columns">
+            <h1>Quantity</h1>
+            <% @departments_resources.each_with_index do |d,i| %>
+                <div class="department" style="background-color: rgba(108, 214, 16, <%= d[:resources].to_f / @departments_resources[0][:resources].to_f%>)">
+                    <h2><%= i+1 %>. <%= d[:department].name %></h2>
+                </div>
+            <% end %>
+        </div>
+    </div>
 </div>
