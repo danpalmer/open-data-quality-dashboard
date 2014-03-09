@@ -7,11 +7,9 @@ DataForce::Application.routes.draw do
 
   resources :departments
 
-  root 'home#quality'
-  get '/quality', to: 'home#quality'
-  get '/amount', to: 'home#amount'
-  get '/budget', to: 'home#budget'
-  get '/employees', to: 'home#employees'
+  root 'home#stats'
+  get '/leaderboard', to: 'home#leaderboard'
+  get '/stats', to: 'home#stats'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

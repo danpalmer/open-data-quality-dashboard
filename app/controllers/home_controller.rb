@@ -1,16 +1,11 @@
 class HomeController < ApplicationController
 
-    def quality
+    def stats
         @departments = Department.all
     end
 
-    def amount
-    end
-
-    def budget
-    end
-
-    def employees
+    def leaderboard
+        @departments = Department.all
     end
 
 end

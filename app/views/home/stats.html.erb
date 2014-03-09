@@ -1,0 +1,34 @@
+<%= render 'navigation' %>
+
+<div class="row">
+    <div class="large-4 medium-6 small-12 columns left" id="statuses">
+        <h3>HTTP Status</h3>
+        <svg></svg>
+        <script>
+            $(function() {
+                nv.addGraph(function() {
+                    var chart = nv.models.pieChart()
+                      .x(function(d) { return d.label })
+                      .y(function(d) { return d.value })
+                      .showLabels(true);
+
+                    d3.select("#statuses svg")
+                        .datum([
+                            {
+                                value: 10,
+                                label: "foobar"
+                            },
+                            {
+                                value: 90,
+                                label: "lots"
+                            }
+                            ])
+                        .transition().duration(350)
+                        .call(chart);
+
+                    return chart;
+                });
+            });
+        </script>
+    </div>
+</div>
