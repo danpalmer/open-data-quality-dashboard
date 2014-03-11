@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://localhost:3000/leaderboard -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Open Data Quality Dashboard</title>
+  <script data-turbolinks-track="true" src="./resources/jquery.js"></script><style type="text/css"></style>
+<script data-turbolinks-track="true" src="./resources/jquery_ujs.js"></script>
+<script data-turbolinks-track="true" src="./resources/turbolinks.js"></script>
+<script data-turbolinks-track="true" src="./resources/departments.js"></script>
+<script data-turbolinks-track="true" src="./resources/resources.js"></script>
+<script data-turbolinks-track="true" src="./resources/score_criteria.js"></script>
+<script data-turbolinks-track="true" src="./resources/scores.js"></script>
+<script data-turbolinks-track="true" src="./resources/application.js"></script>
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="ZzaHow4Va+R4kXjtNgMHxNFnT3eindIDYPqKx2OP5TE=" name="csrf-token">
+
+  <script src="./resources/d3.min.js"></script>
+  <script src="./resources/nv.d3.min.js"></script>
+  <link rel="stylesheet" href="https://raw.github.com/novus/nvd3/master/src/nv.d3.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+    <div class="large-12 columns">
+        <ul class="inline-list">
+            <li><a href="stats.html">Stats</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.department {
+    height: 220px;
+    padding: 20px;
+    border: 1px solid rgba(108, 214, 16, 1.0000);
+    background-color: #eee;
+    margin-bottom: 10px;
+}
+</style>
+<div class="content">
+    <div class="row">
+        <div class="large-6 columns">
+            <h1>Quality</h1>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.7254901960784313)">
+                    <h2>1. Foreign &amp; Commonwealth Office</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.7205578512396694)">
+                    <h2>2. Department of Energy &amp; Climate Change</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6910898379970545)">
+                    <h2>3. Ministry of Justice</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">5</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.688622754491018)">
+                    <h2>4. Department for Work and Pensions</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6883333333333334)">
+                    <h2>5. Department for International Development</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">6</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6875)">
+                    <h2>6. Attorney General's Office</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6844207723035952)">
+                    <h2>7. Department for Education</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6699735449735449)">
+                    <h2>8. Department for Culture, Media &amp; Sport</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6682131495227996)">
+                    <h2>9. Department for Environment, Food &amp; Rural Affairs</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">10</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6530858244937319)">
+                    <h2>10. Department of Health</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">2</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6411012782694199)">
+                    <h2>11. Department for Transport</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">4</span>
+                        <span class="round alert label" title="Very bad file types">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6216577540106952)">
+                    <h2>12. Department for Business, Innovation &amp; Skills</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">10</span>
+                        <span class="round alert label" title="Very bad file types">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.620059880239521)">
+                    <h2>13. Department for Communities and Local Government</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">3</span>
+                        <span class="round alert label" title="Empty, or nearly empty files">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6185737976782753)">
+                    <h2>14. Cabinet Office</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">5</span>
+                        <span class="round alert label" title="Empty, or nearly empty files">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5791770573566084)">
+                    <h2>15. HM Treasury</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">16</span>
+                        <span class="round alert label" title="Empty, or nearly empty files">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5778053316800992)">
+                    <h2>16. Home Office</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">192</span>
+                        <span class="round alert label" title="Very bad file types">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5733333333333334)">
+                    <h2>17. Scotland Office</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">2</span>
+                        <span class="round alert label" title="Empty, or nearly empty files">4</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5647007042253521)">
+                    <h2>18. Ministry of Defence</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">5</span>
+                        <span class="round alert label" title="Empty, or nearly empty files">1</span>
+                        <span class="round alert label" title="Very bad file types">8</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5557065217391304)">
+                    <h2>19. Wales Office</h2>
+                        <span class="round alert label" title="Bad HTTP status codes">44</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5375)">
+                    <h2>20. Northern Ireland Office</h2>
+                        <span class="round alert label" title="Very bad file types">1</span>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5)">
+                    <h2>21. Office of the Advocate General for Scotland</h2>
+                </div>
+        </div>
+        <div class="large-6 columns">
+            <h1>Quantity</h1>
+                <div class="department" style="background-color: rgba(108, 214, 16, 1.0)">
+                    <h2>1. Department for Environment, Food &amp; Rural Affairs</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.8854718981972428)">
+                    <h2>2. Department for Communities and Local Government</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.8552492046659597)">
+                    <h2>3. Home Office</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.6023329798515377)">
+                    <h2>4. Ministry of Defence</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5498409331919406)">
+                    <h2>5. Department of Health</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.5392364793213149)">
+                    <h2>6. Department for Transport</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.4957582184517497)">
+                    <h2>7. Department for Business, Innovation &amp; Skills</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.4427359490986214)">
+                    <h2>8. Department for Work and Pensions</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.39819724284199365)">
+                    <h2>9. Department for Education</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.39766702014846234)">
+                    <h2>10. Department for International Development</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.36002120890774125)">
+                    <h2>11. Ministry of Justice</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.3197242841993637)">
+                    <h2>12. Cabinet Office</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.256627783669141)">
+                    <h2>13. Department of Energy &amp; Climate Change</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.21261930010604455)">
+                    <h2>14. HM Treasury</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.20042417815482502)">
+                    <h2>15. Department for Culture, Media &amp; Sport</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.1352067868504772)">
+                    <h2>16. Foreign &amp; Commonwealth Office</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.0975609756097561)">
+                    <h2>17. Wales Office</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.039766702014846236)">
+                    <h2>18. Scotland Office</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.010604453870625663)">
+                    <h2>19. Northern Ireland Office</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.006362672322375398)">
+                    <h2>20. Attorney General's Office</h2>
+                </div>
+                <div class="department" style="background-color: rgba(108, 214, 16, 0.002651113467656416)">
+                    <h2>21. Office of the Advocate General for Scotland</h2>
+                </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+    // $(document).foundation();
+</script>
+
+
+
+</body></html>
