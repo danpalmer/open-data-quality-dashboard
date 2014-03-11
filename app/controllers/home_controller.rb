@@ -23,7 +23,7 @@ class HomeController < ApplicationController
     end
 
     def leaderboard
-        @departments_ratings = Department.all.map { |d| {department: d, rating: d.rating} }
+        @departments_ratings = Department.all.map { |d| {department: d, rating: d.rating, flags: d.red_flags} }
         @departments_ratings.sort! {|a,b| a[:rating] <=> b[:rating] }
         @departments_ratings = @departments_ratings.reverse
 

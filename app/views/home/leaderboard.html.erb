@@ -1,7 +1,7 @@
 <%= render 'navigation' %>
 <style>
 .department {
-    height: 200px;
+    height: 220px;
     padding: 20px;
     border: 1px solid rgba(108, 214, 16, 1.0000);
     background-color: #eee;
@@ -15,6 +15,9 @@
             <% @departments_ratings.each_with_index do |d,i| %>
                 <div class="department" style="background-color: rgba(108, 214, 16, <%= d[:rating].to_f / 4.to_f%>)">
                     <h2><%= i+1 %>. <%= d[:department].name %></h2>
+                    <% d[:flags].each do |f| %>
+                        <span class="round alert label" title="<%= f[0] %>"><%= f[1] %></span>
+                    <% end %>
                 </div>
             <% end %>
         </div>

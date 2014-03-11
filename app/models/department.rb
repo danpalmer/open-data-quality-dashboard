@@ -31,4 +31,26 @@ class Department < ActiveRecord::Base
 
         return (validity_rating + type_niceness + encoding_niceness + status_niceness)
     end
+
+    def red_flags
+        flags = []
+
+        bad_statuses = self.resources.where("http_status >= 400").count
+        if bad_statuses > 0
+            flags << ["Bad HTTP status codes", bad_statuses]
+        end
+
+        empty_files = self.resources.where("file_file_size < 100").count
+        if empty_files > 0
+            flags << ["Empty, or nearly empty files", empty_files]
+        end
+
+        really_nasty_doc_formats = ['sav', 'ppt', 'odp']
+        really_nasty_docs = self.resources.where("extension in (?)", really_nasty_doc_formats).count
+        if really_nasty_docs > 0
+            flags << ["Very bad file types", really_nasty_docs]
+        end
+
+        return flags
+    end
 end
